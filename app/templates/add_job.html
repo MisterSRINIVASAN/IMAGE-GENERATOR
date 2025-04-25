@@ -1,0 +1,118 @@
+{% include 'hr_header.html' %}
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header">Add Job</h5>
+        <div class="card-body">
+            {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+            <form id="basicform" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">{% csrf_token %}
+                <div class="form-group">
+                    <label for="inputCompanyName">Company Name</label>
+                    <input id="inputCompanyName" type="text" name="company_name" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputJobTitle">Job Title</label>
+                    <input id="inputJobTitle" type="text" name="job_title" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputPosition">Position</label>
+                    <input id="inputPosition" type="text" name="position" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputExperience">Experience</label>
+                    <input id="inputExperience" type="text" name="experience" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputSalary">Salary</label>
+                    <input id="inputSalary" type="text" name="salary" required="required" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="selectDepartment">Department</label>
+                    <select id="selectDepartment" required="required" class="form-control" name="area_of_work">
+                        <option value="">Select</option>
+                        <option value="Knitting">Knitting</option>
+                        <option value="Dying">Dying</option>
+                        <option value="Cutting">Cutting and Stitching</option>
+                        <option value="Printing">Printing</option>
+                        <option value="Ironing">Quality Checking and Packing</option>
+                        <option value="Checking">Checking and Approval</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="selectStatus">Job Status</label>
+                    <select id="selectStatus" required="required" class="form-control" name="status">
+                        <option value="">Select</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputDescription">Job Description</label>
+                    <textarea id="inputDescription" class="form-control" name="description" required="required"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pl-0">
+                    </div>
+                    <div class="col-sm-6 pl-0">
+                        <p class="text-right">
+                            <button type="submit" class="btn btn-space btn-primary">Add Job</button>
+                            <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}
+
+<script>
+function validateForm() {
+    var companyName = document.forms["basicform"]["company_name"].value;
+    var jobTitle = document.forms["basicform"]["job_title"].value;
+    var position = document.forms["basicform"]["position"].value;
+    var experience = document.forms["basicform"]["experience"].value;
+    var salary = document.forms["basicform"]["salary"].value;
+    var department = document.forms["basicform"]["area_of_work"].value;
+    var status = document.forms["basicform"]["status"].value;
+    var description = document.forms["basicform"]["description"].value;
+
+    // Regular expressions for letters and numbers
+    var letterRegex = /^[A-Za-z]+$/;
+    var numberRegex = /^[0-9]+$/;
+
+    // Validation
+    if (!companyName.match(letterRegex)) {
+        alert("Company name must contain only letters");
+        return false;
+    }
+    if (!jobTitle.match(letterRegex)) {
+        alert("Job title must contain only letters");
+        return false;
+    }
+    if (!position.match(letterRegex)) {
+        alert("Position must contain only letters");
+        return false;
+    }
+    if (!experience.match(numberRegex)) {
+        alert("Experience must contain only numbers");
+        return false;
+    }
+    if (!salary.match(numberRegex)) {
+        alert("Salary must contain only numbers");
+        return false;
+    }
+    if (department == "" || status == "" || description == "") {
+        alert("Please fill out all fields");
+        return false;
+    }
+     if (!description.match(letterRegex)) {
+        alert("description must contain only letters");
+        return false;
+
+    return true;
+}
+</script>

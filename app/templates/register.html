@@ -1,0 +1,132 @@
+{% include 'header.html' %}
+
+  <div class="container" style="width: 60% !important;">
+    <div class="card card-register mx-auto mt-5">
+      <div class="card-header">User Register Here</div>
+      <div class="card-body">
+         {% if messages %}
+          {% for i in messages %}
+            <div class="alert alert-success">{{i}}</div>
+          {% endfor %}
+        {% endif %}
+        <form method="post" enctype="multipart/form-data" onsubmit="return validateForm();">{% csrf_token %}
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="">
+                  <input type="text" name="name" class="form-control" placeholder="Enter Your Name" required="required" autofocus="autofocus">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="">
+                  <input type="email" name="email" class="form-control" placeholder="Enter Your Email Id" required="required">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="">
+                  <input type="text" name="mobile" class="form-control" placeholder="Enter Your Mobile Number" required="required" autofocus="autofocus">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="">
+                  <input type="text" name="username" class="form-control" placeholder="Enter Username" required="required">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-12">
+                <div class="">
+                  <input type="password" name="password" class="form-control" placeholder="Enter Your Password" required="required" autofocus="autofocus">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+
+              <div class="col-md-6">
+                <div class="">
+                  <label>DOB</label><br>
+                  <input type="date" name="dob" class="form-control" placeholder="DOB" required="required">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="">
+                                    <label>Upload Resume</label><br>
+
+                  <input type="file" name="resume" class="form-control"  required="required" autofocus="autofocus">
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="form-row">
+              <div class="col-md-6">
+                <div class="">
+                  <input type="text" name="city" class="form-control" placeholder="Enter Your City" required="required" autofocus="autofocus">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="">
+                  <textarea name="address" class="form-control" placeholder="Enter Address" required="required"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary btn-block" value="Register">
+
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script>
+function validateForm() {
+    var name = document.forms["registerForm"]["name"].value;
+    var email = document.forms["registerForm"]["email"].value;
+    var mobile = document.forms["registerForm"]["mobile"].value;
+    var username = document.forms["registerForm"]["username"].value;
+    var password = document.forms["registerForm"]["password"].value;
+    var city = document.forms["registerForm"]["city"].value;
+    var address = document.forms["registerForm"]["address"].value;
+
+    var letterRegex = /^[A-Za-z]+$/;
+    var numberRegex = /^[0-9]+$/;
+
+    if (!name.match(letterRegex)) {
+        alert("Name must contain only letters");
+        return false;
+    }
+    if (!email.match(letterRegex)) {
+        alert("Email must contain only letters");
+        return false;
+    }
+    if (!mobile.match(numberRegex)) {
+        alert("Mobile number must contain only numbers");
+        return false;
+    }
+    if (!username.match(letterRegex)) {
+        alert("Username must contain only letters");
+        return false;
+    }
+    if (!city.match(letterRegex)) {
+        alert("City must contain only letters");
+        return false;
+    }
+    if (!address.match(letterRegex)) {
+        alert("Address must contain only letters");
+        return false;
+    }
+    if (!password.match(numberRegex)) {
+        alert("Password must contain only numbers");
+        return false;
+    }
+}
+</script>

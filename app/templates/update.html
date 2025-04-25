@@ -1,0 +1,49 @@
+{% include 'hr_header.html' %}
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header">Update Interview Status</h5>
+        <div class="card-body">
+            {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+            <form  id="basicform" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {% for i in detail %}
+                <div class="form-group">
+                    <label for="inputUserName">Interview Date</label>
+                    <input id="inputUserName" type="date" name="interview_date" class="form-control" value="{{interview_date}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Job Status</label>
+                    <select required="required"  class="form-control" name="status">
+                        <option value="">Select</option>
+                        <option value="Shorlisted">Shorlisted</option>
+                        <option value="Rejected">Rejected</option>
+                        <option value="Hired">Hired</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Interview Time</label>
+                    <input id="inputUserName" type="text" name="time"   class="form-control" value="{{time}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Interview Conducting Address</label>
+                    <textarea name="address"  class="form-control"> {{address}}</textarea>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pl-0">
+                    </div>
+                    <div class="col-sm-6 pl-0">
+                        <p class="text-right">
+                            <button type="submit" class="btn btn-space btn-primary">Update Status  </button>
+                            <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

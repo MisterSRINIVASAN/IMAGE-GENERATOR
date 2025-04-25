@@ -1,0 +1,58 @@
+{% include 'hr_header.html' %}
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+
+ <div class="container" style="margin:0 auto;">
+ 	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-top: 100px;">
+    <div class="card" >
+        <h5 class="card-header">Expense Details</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background: #ff407b;color: #FFF">
+                        <tr class="white">
+	                        <th>S.No</th>
+							<th>E Name</th>
+                            <th>Expense Purpose</th>
+                            <th>Amount</th>
+							<th>View Bill</th>
+							<th>Date</th>
+                            
+                            
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in detail %}
+                        <tr>
+					        <td>{{forloop.counter}}</td>
+							<td>{{i.expense_name}}</td>
+                            <td>{{i.expense_purpose}}</td>
+                            <td>{{i.expense_amount}}</td>
+							
+                            <td><a href="/media/{{i.expense_file}}" target="_blank" class="btn btn-warning"><i class="fa fa-download"></i></a>
+                            <td>{{i.expense_date}}</td>
+							
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Employee</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

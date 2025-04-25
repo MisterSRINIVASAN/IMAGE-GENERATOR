@@ -1,0 +1,41 @@
+{% include 'employee_header.html' %}
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header">Update Work Status</h5>
+        <div class="card-body">
+            {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+            <form  id="basicform" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {% for i in detail %}
+                <div class="form-group">
+                    <label for="inputUserName">Final Delivered Quantity</label>
+                    <input id="inputUserName" type="text" name="final_delivered_Quantity" required="required"  class="form-control" value="{{final_delivered_Quantity}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Status</label>
+                    <select required="required"  class="form-control" name="status">
+                        <option value="">Select</option>
+                        <option value="yettostart">Yet to Start</option>
+                        <option value="Processing">Processing</option>
+                        <option value="Finish">Finish</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pl-0">
+                    </div>
+                    <div class="col-sm-6 pl-0">
+                        <p class="text-right">
+                            <button type="submit" class="btn btn-space btn-primary">Update Status  </button>
+                            <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

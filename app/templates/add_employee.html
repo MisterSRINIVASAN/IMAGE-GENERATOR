@@ -1,0 +1,93 @@
+{% include 'hr_header.html' %}
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header">Add Employee</h5>
+        <div class="card-body">
+            {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+            <form  id="basicform" method="post" enctype="multipart/form-data">{% csrf_token %}
+                <div class="form-group">
+                    <label for="inputUserName">Employee Name</label>
+                    <input id="inputUserName" type="text" name="employee_name" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Email Id</label>
+                    <input id="inputUserName" type="email" name="email" required="required"  class="form-control">
+                </div>
+                 <div class="form-group">
+                    <label for="inputUserName">Mobile Number</label>
+                    <input id="inputUserName" type="text" name="mobile" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Username</label>
+                    <input id="inputUserName" type="text" name="username" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Password</label>
+                    <input id="inputUserName" type="password" name="password" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">DOB</label>
+                    <input id="inputUserName" type="date" name="dob" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">DOJ</label>
+                    <input id="inputUserName" type="date" name="doj" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Department</label>
+                    <select required="required"  class="form-control" name="department">
+                        <option value="">Select</option>
+                        <option value="Knitting">Knitting</option>
+                        <option value="Dying">Dying</option>
+                        <option value="Cutting">Cutting and Stitching</option>
+                        <option value="Printing">Printing</option>
+                        <option value="Ironing">Quality Checking and Packing</option>
+                        <option value="Checking">Checking and Approval</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Employee Type</label>
+                    <select required="required"  class="form-control" name="user_type">
+                        <option value="">Select</option>
+                        <option value="Normal">Normal</option>
+                        <option value="Manager">Manager</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputUserName">Per Day Salary</label>
+                    <input id="inputUserName" type="text" name="salary" required="required"  class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="inputUserName">City</label>
+                    <input id="inputUserName" type="text" name="city" required="required"  class="form-control">
+                </div>
+             
+                <div class="form-group">
+                    <label for="inputUserName">Bio Data</label>
+                    <input id="inputUserName" type="file" name="bio_data" required="required"   class="form-control">
+                </div>
+                  <div class="form-group">
+                    <label for="inputUserName">Address</label>
+                    <textarea class="form-control" name="address" required="required"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pl-0">
+                    </div>
+                    <div class="col-sm-6 pl-0">
+                        <p class="text-right">
+                            <button type="submit" class="btn btn-space btn-primary">Add Employee  </button>
+                            <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

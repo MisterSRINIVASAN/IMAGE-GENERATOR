@@ -1,0 +1,45 @@
+{% include 'admin_header.html' %}
+<div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+    <div class="card">
+        <h5 class="card-header">Rise Invoice</h5>
+        <div class="card-body">
+            {% if messages %}
+                {% for i in messages %}
+                    <div class="alert alert-success">{{i}}</div>
+                {% endfor %}
+            {% endif %}
+            <form  id="basicform" method="post" enctype="multipart/form-data">{% csrf_token %}
+                {% for i in detail %}
+                <div class="form-group">
+                    <label for="inputUserName">Order Id</label>
+                    <input id="inputUserName" type="text" name="order_id" required="required"  class="form-control" value="{{i.order_id}}">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Due Date</label>
+                    <input id="inputUserName" type="date" name="due_date" required="required"  class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="inputUserName">Invoice Amount</label>
+                    <input id="inputUserName" type="text" name="amount" required="required"  class="form-control" value="{{request.GET.amount}}">
+                </div>
+                 
+                  <div class="form-group">
+                    <label for="inputUserName">Notes</label>
+                    <textarea class="form-control" name="notes" required="required"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6 pl-0">
+                    </div>
+                    <div class="col-sm-6 pl-0">
+                        <p class="text-right">
+                            <button type="submit" class="btn btn-space btn-primary">Rise Invoice  </button>
+                            <button type="reset" class="btn btn-space btn-secondary">Cancel</button>
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+    </div>
+</div>
+{% include 'footer.html' %}

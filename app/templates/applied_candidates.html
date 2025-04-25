@@ -1,0 +1,76 @@
+{% include 'hr_header.html' %}
+<style>
+table {
+	font-family: times new roman;
+	border-collapse: collapse;
+	width: 100%;
+}
+td, th{
+	border: 1px solid #dddddd;
+	text-align: center;
+	padding: 8px;
+	}
+</style>
+
+ <div class="container" style="margin:0 auto;">
+ 	<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-top: 100px;">
+    <div class="card" >
+        <h5 class="card-header">Applied Candidate Details</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background: #ff407b;color: #FFF">
+                        <tr class="white">
+	                        <th>S.No</th>
+                            <th>Job Title</th>
+                            <th>Exp</th>
+							<th>Position</th>
+							<th>Salary</th>
+                            <th>Applier Name</th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Resume</th>
+                            <th>Job Status</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in detail %}
+                        <tr>
+					        <td>{{forloop.counter}}</td>
+
+							<td>{{i.job_id.job_title}}</td>
+                            <td>{{i.job_id.experience}}</td>
+                            <td>{{i.job_id.position}}</td>
+							<td>{{i.job_id.salary}}</td>
+                            <td>{{i.user_name.name}}</td>
+                            <td>{{i.user_name.mobile}}</td>
+                            <td>{{i.user_name.email}}</td>
+                            <td><a href="media/{{i.user_name.resume}}"  class="btn btn-info btn-xs"><i class="fa fa-download"></i> Resume</a></td>
+                            <td>
+                                {% if i.status == 'pending' %}
+                                    <span style="color: orange;font-weight: bold;">Waiting</span>
+                                {% elif i.status == 'Shorlisted' %}
+                                    <span style="color: green;font-weight: bold;">Shorlisted</span>
+                                {% elif i.status == 'Rejected' %}
+                                    <span style="color: red;font-weight: bold;">Rejected</span>
+                                {% elif i.status == 'Hired' %}
+                                    <span style="color: green;font-weight: bold;">Hired</span>
+                                {% endif  %}
+                            </td>
+                            <td>                                    <a href="{% url 'update' pk=i.id %}" class="btn btn-success"><i class="fa fa-edit"></i> Update</a>
+</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Candidates</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

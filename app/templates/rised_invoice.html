@@ -1,0 +1,62 @@
+{% include 'admin_header.html' %}
+{% load mathfilters %}
+<style>
+table {
+    font-family: times new roman;
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th{
+    border: 1px solid #dddddd;
+    text-align: center;
+    padding: 8px;
+    }
+</style>
+
+ <div class="container" style="margin:0 auto;">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" style="padding-top: 100px;">
+    <div class="card" >
+        <h5 class="card-header">Rised Invoice</h5>
+        <div class="card-body">
+            <div class="table-responsive ">
+                <table class="table table-bordered">
+                    <thead style="background: #ff407b;color: #FFF">
+                        <tr class="white">
+                            <th>S.No</th>
+                            <th>Order Id</th>
+                            <th>Buyer Name</th>
+                            <th>Total Quantity</th>
+                            <th>Per Item Amount</th>
+                            <th>Amount</th>
+                            <th>Option</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for i in detail %}
+                        <tr>
+                            <td>{{forloop.counter}}</td>
+                            <td>{{i.order_id}}</td>
+                            <td>{{i.buyer_name}}</td>
+                            <td>{{i.buyer_name.quantity}}</td>
+                            <td>{{i.buyer_name.amount_per_product}} Rs</td>
+                            <td>{% with answer=i.buyer_name.quantity %}
+                                {{ answer|mul:i.buyer_name.amount_per_product }} Rs 
+                            </td>
+                            <td><div style="margin-bottom: 10px;"><a href="{% url 'gen_pdf' %}?order_id={{i.order_id}}&id={{i.buyer_name_id}}" target="_blank" class="btn btn-info btn-sm" style="font-size:10px;width:60px;"><i class="fas fa-download"></i> PDF</a> 
+                            </div></td>
+                            {% endwith %}
+                           
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="8" class="text-center bg-primary">No Invoice</td>
+                        </tr>
+                       {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
