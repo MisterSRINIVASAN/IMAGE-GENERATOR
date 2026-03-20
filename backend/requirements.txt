@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+sqlalchemy
+pydantic
+diffusers
+transformers
+accelerate
+torch
+python-multipart
