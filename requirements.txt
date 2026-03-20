@@ -1,0 +1,4 @@
+Django>=4.2
+django-jazzmin
+django-mathfilters
+xhtml2pdf
